@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "liteplayer",
+  "main": "src/cloud-worker.mjs",
+  "compatibility_date": "2026-10-09",
+  "d1_databases": [{
+    "binding": "DB", "database_name": "liteplayer",
+    "database_id": "00000000-0000-0000-0000-000000000000",
+    "migrations_dir": "migrations"
+  }],
+  "r2_buckets": [{ "binding": "AUDIO", "bucket_name": "liteplayer-audio" }],
+  "containers": [{
+    "class_name": "DownloadContainer",
+    "image": "./Dockerfile",
+    "instance_type": "standard-2",
+    "max_instances": 1
+  }],
+  "durable_objects": { "bindings": [{ "name": "DOWNLOAD_CONTAINER", "class_name": "DownloadContainer" }] },
+  "migrations": [{ "tag": "v1-container", "new_sqlite_classes": ["DownloadContainer"] }],
+  "triggers": { "crons": ["* * * * *"] },
+  "vars": {
+    "ALLOWED_ORIGIN": "*",
+    "WORKER_URL": "https://configure-your-worker-origin.invalid"
+  }
+}

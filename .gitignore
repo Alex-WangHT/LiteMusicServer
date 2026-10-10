@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.dev.vars
+.env
+.tools/
+.downloads/
+test-results/
+*.log
+.user-*.json

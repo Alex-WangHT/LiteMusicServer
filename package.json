@@ -1,0 +1,33 @@
+{
+  "name": "liteplayer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --ip 127.0.0.1 --port 8787",
+    "dev:web": "node scripts/web.mjs",
+    "user:create": "node --env-file=.env scripts/create-user.mjs",
+    "db:local": "wrangler d1 migrations apply liteplayer --local",
+    "db:remote": "wrangler d1 migrations apply liteplayer --remote",
+    "deploy": "wrangler deploy",
+    "deploy:cloud": "wrangler deploy --config wrangler.cloud.jsonc",
+    "check:cloud": "wrangler deploy --config wrangler.cloud.jsonc --dry-run",
+    "db:cloud": "wrangler d1 migrations apply liteplayer --remote --config wrangler.cloud.jsonc",
+    "downloader": "node --env-file=.env downloader/main.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:integration": "node --env-file=.env test/integration.mjs",
+    "test:video": "node --env-file=.env test/video.mjs",
+    "test:browser": "node --env-file=.env test/browser.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.0",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.3.7",
+    "ffmpeg-static": "^5.3.0"
+  }
+}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LitePlayer · 音频收藏</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/client.js"></script>
+</head>
+<body>
+  <main>
+    <header><span class="badge">LITEPLAYER · API CLIENT</span><h1>个人音频库 · API 验证</h1><p>身份、音频与歌单由独立后端管理。</p></header>
+    <label for="api-base">API 地址</label><input id="api-base" value="http://127.0.0.1:8787">
+    <label for="token">用户密钥</label><input id="token" type="password" autocomplete="off">
+    <div class="actions"><button id="connect">连接</button><button id="logout">退出此页面</button><button id="rotate">轮换密钥</button></div>
+    <p id="identity">未连接</p><textarea id="new-key" hidden readonly aria-label="请保存新密钥"></textarea>
+    <form id="form">
+      <label for="url">视频链接（仅抖音 / Bilibili）</label>
+      <div class="submit"><input id="url" type="url" required placeholder="https://www.bilibili.com/video/BV…"><button id="save">保存音频</button></div>
+      <p class="hint">仅支持抖音和 Bilibili，最长 2 小时、最大 80 MiB。支持 v.douyin.com 分享短链接。</p>
+    </form>
+    <p id="message" role="status"></p>
+    <section><div class="section-title"><h2>音频库</h2><button id="refresh">刷新</button></div><div id="library"></div></section>
+    <section><h2>歌单</h2><form id="playlist-form"><label for="playlist-name">歌单名称</label><input id="playlist-name" required maxlength="100"><button>创建歌单</button></form><div id="playlists"></div></section>
+  </main>
+</body>
+</html>

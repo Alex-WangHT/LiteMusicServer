@@ -1,0 +1,8 @@
+**
+!Dockerfile
+!package.json
+!package-lock.json
+!downloader/
+!downloader/**
+!src/
+!src/shared.mjs
